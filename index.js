@@ -34,7 +34,11 @@ app.post("/token",(req,res)=>{
 
     console.log(token);
 
-    res.json({token:token.toJwt()});
+    const jwt=token.toJwt();
+
+    console.log("jwt is " ,jwt);
+
+    res.json({token:jwt});
 
 });
 
