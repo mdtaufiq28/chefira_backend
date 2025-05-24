@@ -13,6 +13,7 @@ app.use(express.json());
 app.post("/token",(req,res)=>{
 
     const {identity,role}=req.body;
+    
     if(!identity){
         return res.status(400).json({error:"identity is required"});
     }
@@ -36,5 +37,7 @@ app.post("/token",(req,res)=>{
 
 });
 
-app.listen(PORT);
+app.listen(PORT,()=>{
+    console.log('Server is running on port ',PORT);
+});
 
