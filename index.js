@@ -31,7 +31,7 @@ app.post("/token",async (req,res)=>{
     token.addGrant({
         roomJoin:true,
         room:"chef-room",
-        canPublish:role==="chef",
+        canPublish:true,
         canSubscribe:true
     });
 
