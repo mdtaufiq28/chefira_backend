@@ -13,6 +13,9 @@ app.use(express.json());
 
 app.post("/token",async (req,res)=>{
 
+    console.log(process.env.LIVEKIT_API_KEY);
+    console.log(process.env.LIVEKIT_API_SECRET);
+
     const {identity,role}=req.body;
     
     if(!identity){
