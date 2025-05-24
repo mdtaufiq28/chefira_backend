@@ -11,7 +11,7 @@ console.log("Welcome to Server of Chefira");
 app.use(cors());
 app.use(express.json());
 
-app.post("/token",(req,res)=>{
+app.post("/token",async (req,res)=>{
 
     const {identity,role}=req.body;
     
@@ -34,7 +34,7 @@ app.post("/token",(req,res)=>{
 
     console.log(token);
 
-    const jwt=token.toJwt();
+    const jwt=await token.toJwt();
 
     console.log("jwt is " ,jwt);
 
