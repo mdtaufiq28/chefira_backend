@@ -30,6 +30,8 @@ app.post("/token",(req,res)=>{
         canSubscribe:true
     });
 
+    console.log(token);
+
     res.json({token:token.toJwt()});
 
 });
