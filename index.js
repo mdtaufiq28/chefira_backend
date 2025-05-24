@@ -6,6 +6,7 @@ import { AccessToken } from 'livekit-server-sdk';
 const app=express();
 const PORT=process.env.PORT || 4000;
 
+console.log("Welcome to Server of Chefira");
 
 app.use(cors());
 app.use(express.json());
