@@ -28,6 +28,13 @@ app.post("/token",async (req,res)=>{
         {identity}
     )
 
+    if(role==='chef'){
+        token.metadata=JSON.stringify({role:'chef'});
+    }
+    else if(role==='user'){
+        token.metadata=JSON.stringify({role:'user'});
+    }
+
     token.addGrant({
         roomJoin:true,
         room:"chef-room",
