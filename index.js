@@ -37,29 +37,36 @@ app.post("/token",async (req,res)=>{
 
     if(role==='chef'){
         token.metadata=JSON.stringify({role:'chef'});
-    }
-    else if(role==='user'){
-        token.metadata=JSON.stringify({role:'user'});
-    }
-
-    const roomId=uuidv4();
-
-    token.addGrant({
+        const roomId=uuidv4();
+        token.addGrant({
         roomJoin:true,
         room:roomId,
         canPublish:true,
         canSubscribe:true
-    });
+        });
+        const jwt=await token.toJwt();
+        res.json({roomId:roomId,token:jwt});
+
+    }
+    else if(role==='user'){
+        const {roomId}=req.body;
+        token.metadata=JSON.stringify({role:'user'});
+        token.addGrant({
+        roomJoin:true,
+        room:roomId,
+        canPublish:true,
+        canSubscribe:true
+        });
+        const jwt=await token.toJwt();
+
+        res.json({token:jwt});
+    }
 
     console.log(token);
 
-    const jwt=await token.toJwt();
 
     console.log("jwt is " ,jwt);
 
-    res.json({
-    roomId:roomId,
-    token:jwt});
 
 });
 
