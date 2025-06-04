@@ -31,8 +31,7 @@ app.post("/token",async (req,res)=>{
         process.env.LIVEKIT_API_KEY,
         process.env.LIVEKIT_API_SECRET,
         {
-        identity:identity,
-        ttl:120
+        identity:identity
         }
     )
 
