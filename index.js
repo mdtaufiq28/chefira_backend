@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { AccessToken } from 'livekit-server-sdk';
+import {v4 as uuidv4} from 'uuid';
 
 
 const app=express();
@@ -29,7 +30,10 @@ app.post("/token",async (req,res)=>{
     const token=new AccessToken(
         process.env.LIVEKIT_API_KEY,
         process.env.LIVEKIT_API_SECRET,
-        {identity}
+        {
+        identity:identity,
+        ttl:120
+        }
     )
 
     if(role==='chef'){
@@ -39,9 +43,11 @@ app.post("/token",async (req,res)=>{
         token.metadata=JSON.stringify({role:'user'});
     }
 
+    const roomId=uuidv4();
+
     token.addGrant({
         roomJoin:true,
-        room:"chef-room",
+        room:roomId,
         canPublish:true,
         canSubscribe:true
     });
@@ -52,7 +58,9 @@ app.post("/token",async (req,res)=>{
 
     console.log("jwt is " ,jwt);
 
-    res.json({token:jwt});
+    res.json({
+    roomId:roomId,
+    token:jwt});
 
 });
 

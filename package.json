@@ -1,20 +1,5 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "type": "module",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "livekit-client": "^2.13.3",
-    "livekit-server-sdk": "^2.13.0"
+    "uuid": "^11.1.0"
   }
 }
