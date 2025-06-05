@@ -49,8 +49,11 @@ app.post("/token",async (req,res)=>{
 
     }
     else if(role==='user'){
-        const {roomId}=req.body;
-        token.metadata=JSON.stringify({role:'user'});
+        const {roomId,requesting_session}=req.body;
+        token.metadata=JSON.stringify({
+        role:'user',
+        user_session_type:requesting_session
+        });
         token.addGrant({
         roomJoin:true,
         room:roomId,
